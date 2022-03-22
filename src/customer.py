@@ -15,3 +15,6 @@ class Customer:
         for pet in self.pets:
             total_cost += pet.price
         return total_cost
+    
+    def spend_money(self, transact):
+        self.cash += transact

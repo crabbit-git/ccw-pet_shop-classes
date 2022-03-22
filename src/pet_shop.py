@@ -27,3 +27,10 @@ class PetShop:
         for pet in self.stock:
             if pet.name == pet_name:
                 return pet
+    
+    def sell_pet_to_customer(self, pet_name, customer):
+        customer.spend_money(self.find_pet_by_name(pet_name).price)
+        self.increase_total_cash(self.find_pet_by_name(pet_name).price)
+        self.remove_pet(self.find_pet_by_name(pet_name))
+        customer.add_pet(self.find_pet_by_name(pet_name))
+        self.increase_pets_sold()
