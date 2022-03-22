@@ -29,8 +29,10 @@ class PetShop:
                 return pet
     
     def sell_pet_to_customer(self, pet_name, customer):
-        customer.spend_money(self.find_pet_by_name(pet_name).price)
-        self.increase_total_cash(self.find_pet_by_name(pet_name).price)
-        self.remove_pet(self.find_pet_by_name(pet_name))
-        customer.add_pet(self.find_pet_by_name(pet_name))
-        self.increase_pets_sold()
+        pet = self.find_pet_by_name(pet_name)
+        if pet != None and customer.cash >= pet.price:
+            customer.spend_money(pet.price)
+            self.increase_total_cash(pet.price)
+            self.remove_pet(pet)
+            customer.add_pet(pet)
+            self.increase_pets_sold()
